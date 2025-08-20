@@ -1,12 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import {Outlet, useLocation} from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header.jsx";
 
-const hideHeaderOn = ["/LoginRegister"];
-const shouldHideHeader = hideHeaderOn.includes(location.pathname);
-
 export default function Layout() {
+    const location = useLocation();
+
+    const hideHeaderOn = ["/"];
+    const shouldHideHeader = hideHeaderOn.includes(location.pathname);
     return (
         <>
             {!shouldHideHeader && <Header />}
