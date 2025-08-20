@@ -10,10 +10,6 @@ import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import {useNavigate} from "react-router-dom";
 
-const clickLogo = () => {
-    navigate('/Dashboard');
-}
-
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -72,13 +68,6 @@ const EntreprisesPage = () => {
 
     return (
         <div className="bg-gray-100 text-black">
-            {/* Header */}
-            <header className="flex justify-between items-center p-4 bg-white shadow">
-                <img onClick={clickLogo} src="/logo.png" alt="Logo" className="h-10" />
-                <button className="bg-orange-500 text-white px-4 py-2 rounded-full">MON ESPACE</button>
-            </header>
-
-            {/* Carte et filtres */}
             <section className="flex flex-col items-center py-6">
 
                 <div className="w-full max-w-4xl h-[400px]">
@@ -134,20 +123,6 @@ const EntreprisesPage = () => {
                     <button className="bg-orange-500 text-white font-bold px-6 py-2 rounded-full mt-4">PLUS</button>
                 </div>
             </section>
-
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-4 text-center text-sm">
-                <div className="flex justify-center gap-4 mb-2">
-                    <a href="#" className="hover:underline">Facebook</a>
-                    <a href="#" className="hover:underline">LinkedIn</a>
-                    <a href="#" className="hover:underline">Instagram</a>
-                </div>
-                <div className="flex justify-center gap-2 flex-wrap">
-                    <span>CONTACT</span>|
-                    <span>POLITIQUE DE CONFIDENTIALITÉ</span>|
-                    <span>MENTIONS LÉGALES ET CGV</span>
-                </div>
-            </footer>
         </div>
     );
 };

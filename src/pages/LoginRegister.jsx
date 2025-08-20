@@ -123,15 +123,6 @@ const LoginRegister = () => {
                     </form>
                 </div>
             </div>
-
-            <footer className="mt-10 text-center text-sm text-gray-600 border-t pt-6 w-full max-w-4xl">
-                <div className="flex justify-center gap-4 mb-2">
-                    <a href="#" className="text-blue-600">Facebook</a>
-                    <a href="#" className="text-blue-400">LinkedIn</a>
-                    <a href="#" className="text-pink-500">Instagram</a>
-                </div>
-                <p>CONTACT | POLITIQUE DE CONFIDENTIALITÉ | MENTIONS LÉGALES ET CGV</p>
-            </footer>
         </div>
     );
 };

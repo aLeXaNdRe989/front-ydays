@@ -15,15 +15,6 @@ const Dashboard = () => {
     return (
         <div className="bg-gray-100 text-black font-sans">
 
-            {/* HEADER */}
-            <header className="bg-white flex justify-between items-center p-4 shadow-md">
-                <img src="/logo.png" alt="Logo" className="h-12" />
-                <button onClick={clickProfil} className="bg-orange-500 text-white font-semibold px-4 py-2 rounded-full hover:bg-orange-600">
-                    MON ESPACE
-                </button>
-            </header>
-
-            {/* BANNIERE PRINCIPALE */}
             <section className="relative bg-cover bg-[center_bottom_15%] h-[400px]" style={{ backgroundImage: "url('/fond_dashboard.png')" }}>
                 <div className="absolute inset-0 bg-black/40 flex justify-center items-center p-6">
                     <div className="bg-white p-6 rounded-lg max-w-xl text-center shadow-lg">
@@ -101,20 +92,6 @@ const Dashboard = () => {
                     </div>
                 </div>
             </section>
-
-            {/* FOOTER */}
-            <footer className="bg-gray-900 text-white py-4 text-center text-sm">
-                <div className="flex justify-center gap-4 mb-2">
-                    <a href="#" className="hover:underline">Facebook</a>
-                    <a href="#" className="hover:underline">LinkedIn</a>
-                    <a href="#" className="hover:underline">Instagram</a>
-                </div>
-                <div className="flex justify-center gap-2 flex-wrap">
-                    <span>CONTACT</span>|
-                    <span>POLITIQUE DE CONFIDENTIALITÉ</span>|
-                    <span>MENTIONS LÉGALES ET CGV</span>
-                </div>
-            </footer>
         </div>
     );
 };

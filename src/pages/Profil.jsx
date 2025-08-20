@@ -29,13 +29,7 @@ const Profil = () => {
 
     return (
         <div className="bg-gray-100 text-black min-h-screen">
-            {/* Header */}
-            <header className="flex justify-between items-center p-4 bg-white shadow">
-                <img src="/logo.png" alt="Logo" className="h-10" />
-                <button className="bg-orange-500 text-white px-4 py-2 rounded-full">ENTREPRISE</button>
-            </header>
 
-            {/* Titre */}
             <h2 className="text-center text-lg font-bold mt-4">MATCHEZ AVEC VOTRE AVENIR</h2>
 
             {/* Profil */}
@@ -100,20 +94,6 @@ const Profil = () => {
                     </section>
                 </>
             )}
-
-            {/* Footer */}
-            <footer className="bg-gray-900 text-white py-4 text-center text-sm mt-8">
-                <div className="flex justify-center gap-4 mb-2">
-                    <a href="#" className="hover:underline">Facebook</a>
-                    <a href="#" className="hover:underline">LinkedIn</a>
-                    <a href="#" className="hover:underline">Instagram</a>
-                </div>
-                <div className="flex justify-center gap-2 flex-wrap">
-                    <span>CONTACT</span>|
-                    <span>POLITIQUE DE CONFIDENTIALITÉ</span>|
-                    <span>MENTIONS LÉGALES ET CGV</span>
-                </div>
-            </footer>
         </div>
     );
 };
