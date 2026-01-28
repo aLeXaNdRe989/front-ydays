@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import api from '../services/api';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth.jsx';
 
 const LoginRegister = () => {
     const [loginEmail, setLoginEmail] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     const [register, setRegister] = useState({
         nomPrenom: '',
@@ -15,18 +17,22 @@ const LoginRegister = () => {
     });
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleLogin = async (e) => {
         e.preventDefault();
+        setLoginError('');
         try {
-            const res = await api.post('/auth/login', {
-                email: loginEmail,
-                password: loginPassword,
-            });
-            localStorage.setItem('token', res.data.token);
-            navigate('/dashboard');
+            const user = await login(loginEmail, loginPassword);
+
+            // Rediriger selon le statut d'approbation
+            if (user.role === 'admin' || user.isApproved === 'approved') {
+                navigate('/dashboard');
+            } else {
+                navigate('/pending-approval');
+            }
         } catch (err) {
-            alert('Erreur de connexion');
+            setLoginError(err.response?.data?.msg || 'Erreur de connexion');
         }
     };
 
@@ -38,15 +44,16 @@ const LoginRegister = () => {
         }
         try {
             await api.post('/auth/register', {
-                nom: register.nomPrenom.split(' ')[1],
+                nom: register.nomPrenom.split(' ')[1] || register.nomPrenom,
                 prenom: register.nomPrenom.split(' ')[0],
                 email: register.email,
                 password: register.password,
+                telephone: register.telephone,
                 role: 'candidat'
             });
-            alert('Inscription réussie');
+            alert('Inscription reussie ! Vous pouvez maintenant vous connecter.');
         } catch (err) {
-            alert("Erreur lors de l'inscription");
+            alert(err.response?.data?.msg || "Erreur lors de l'inscription");
         }
     };
 
@@ -58,6 +65,11 @@ const LoginRegister = () => {
                 {/* Connexion */}
                 <div className="border-2 border-purple-500 rounded-xl p-6 shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-center">CONNEXION</h2>
+                    {loginError && (
+                        <div className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm text-center">
+                            {loginError}
+                        </div>
+                    )}
                     <form onSubmit={handleLogin} className="flex flex-col gap-4">
                         <input
                             type="email"
@@ -84,14 +96,14 @@ const LoginRegister = () => {
                     <form onSubmit={handleRegister} className="flex flex-col gap-4">
                         <input
                             type="text"
-                            placeholder="Nom et prénom"
+                            placeholder="Nom et prenom"
                             className="p-2 bg-gray-200 rounded"
                             onChange={(e) => setRegister({ ...register, nomPrenom: e.target.value })}
                             required
                         />
                         <input
                             type="tel"
-                            placeholder="Numéro de téléphone"
+                            placeholder="Numero de telephone"
                             className="p-2 bg-gray-200 rounded"
                             onChange={(e) => setRegister({ ...register, telephone: e.target.value })}
                             required
@@ -105,7 +117,7 @@ const LoginRegister = () => {
                         />
                         <input
                             type="password"
-                            placeholder="Créer un mot de passe"
+                            placeholder="Creer un mot de passe"
                             className="p-2 bg-gray-200 rounded"
                             minLength={10}
                             onChange={(e) => setRegister({ ...register, password: e.target.value })}
@@ -118,10 +130,21 @@ const LoginRegister = () => {
                             onChange={(e) => setRegister({ ...register, confirmPassword: e.target.value })}
                             required
                         />
-                        <p className="text-xs text-gray-500">*10 caractères minimum</p>
+                        <p className="text-xs text-gray-500">*10 caracteres minimum</p>
                         <button className="bg-orange-500 text-white py-2 rounded font-bold hover:bg-orange-600 transition">M'INSCRIRE</button>
                     </form>
                 </div>
+            </div>
+
+            {/* Lien inscription entreprise */}
+            <div className="mt-8 text-center">
+                <p className="text-gray-600 mb-2">Vous representez une entreprise ?</p>
+                <Link
+                    to="/register-entreprise"
+                    className="text-purple-600 font-semibold hover:underline"
+                >
+                    Inscrivez votre entreprise
+                </Link>
             </div>
         </div>
     );
