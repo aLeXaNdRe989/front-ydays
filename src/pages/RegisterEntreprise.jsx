@@ -20,6 +20,8 @@ const RegisterEntreprise = () => {
         entrepriseNom: '',
         entrepriseDescription: '',
         entrepriseAdresse: '',
+        entrepriseCodePostal: '',
+        entrepriseVille: '',
         entrepriseEmail: ''
     });
 
@@ -54,6 +56,8 @@ const RegisterEntreprise = () => {
                 entrepriseNom: form.entrepriseNom,
                 entrepriseDescription: form.entrepriseDescription,
                 entrepriseAdresse: form.entrepriseAdresse,
+                entrepriseCodePostal: form.entrepriseCodePostal,
+                entrepriseVille: form.entrepriseVille,
                 entrepriseEmail: form.entrepriseEmail
             });
 
@@ -89,28 +93,28 @@ const RegisterEntreprise = () => {
     }
 
     return (
-        <div className="min-h-screen bg-white flex flex-col items-center p-8">
-            <img src="/logo.png" alt="Logo" className="h-32 my-6" />
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col items-center p-8">
+            <img src="/logo.png" alt="Logo" className="h-28 my-8" />
 
             <div className="w-full max-w-2xl">
-                <h1 className="text-2xl font-bold text-center mb-6">Inscription Entreprise</h1>
+                <h1 className="text-2xl font-bold text-center mb-8 text-gray-800">Inscription Entreprise</h1>
 
                 {error && (
-                    <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-center">
+                    <div className="bg-red-50 text-red-600 p-4 rounded-xl mb-6 text-center border border-red-200">
                         {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Informations personnelles */}
-                    <div className="border-2 border-purple-500 rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-4">Informations personnelles</h2>
+                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <h2 className="text-lg font-semibold mb-4 text-gray-800">Informations personnelles</h2>
                         <div className="grid md:grid-cols-2 gap-4">
                             <input
                                 type="text"
                                 name="prenom"
                                 placeholder="Prenom"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.prenom}
                                 onChange={handleChange}
                                 required
@@ -119,7 +123,7 @@ const RegisterEntreprise = () => {
                                 type="text"
                                 name="nom"
                                 placeholder="Nom"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.nom}
                                 onChange={handleChange}
                                 required
@@ -128,7 +132,7 @@ const RegisterEntreprise = () => {
                                 type="email"
                                 name="email"
                                 placeholder="Adresse mail"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.email}
                                 onChange={handleChange}
                                 required
@@ -137,7 +141,7 @@ const RegisterEntreprise = () => {
                                 type="tel"
                                 name="telephone"
                                 placeholder="Telephone"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.telephone}
                                 onChange={handleChange}
                             />
@@ -145,7 +149,7 @@ const RegisterEntreprise = () => {
                                 type="password"
                                 name="password"
                                 placeholder="Mot de passe (10 car. min)"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.password}
                                 onChange={handleChange}
                                 minLength={10}
@@ -155,7 +159,7 @@ const RegisterEntreprise = () => {
                                 type="password"
                                 name="confirmPassword"
                                 placeholder="Confirmer le mot de passe"
-                                className="p-2 bg-gray-200 rounded"
+                                className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.confirmPassword}
                                 onChange={handleChange}
                                 required
@@ -164,14 +168,14 @@ const RegisterEntreprise = () => {
                     </div>
 
                     {/* Informations entreprise */}
-                    <div className="border-2 border-purple-500 rounded-xl p-6">
-                        <h2 className="text-lg font-semibold mb-4">Informations entreprise</h2>
+                    <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+                        <h2 className="text-lg font-semibold mb-4 text-gray-800">Informations entreprise</h2>
                         <div className="space-y-4">
                             <input
                                 type="text"
                                 name="entrepriseNom"
                                 placeholder="Nom de l'entreprise"
-                                className="w-full p-2 bg-gray-200 rounded"
+                                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.entrepriseNom}
                                 onChange={handleChange}
                                 required
@@ -180,7 +184,7 @@ const RegisterEntreprise = () => {
                                 type="email"
                                 name="entrepriseEmail"
                                 placeholder="Email de l'entreprise"
-                                className="w-full p-2 bg-gray-200 rounded"
+                                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.entrepriseEmail}
                                 onChange={handleChange}
                                 required
@@ -189,30 +193,48 @@ const RegisterEntreprise = () => {
                                 type="text"
                                 name="entrepriseAdresse"
                                 placeholder="Adresse de l'entreprise"
-                                className="w-full p-2 bg-gray-200 rounded"
+                                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
                                 value={form.entrepriseAdresse}
                                 onChange={handleChange}
                             />
+                            <div className="grid md:grid-cols-2 gap-4">
+                                <input
+                                    type="text"
+                                    name="entrepriseCodePostal"
+                                    placeholder="Code postal"
+                                    className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                    value={form.entrepriseCodePostal}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    name="entrepriseVille"
+                                    placeholder="Ville"
+                                    className="p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+                                    value={form.entrepriseVille}
+                                    onChange={handleChange}
+                                />
+                            </div>
                             <textarea
                                 name="entrepriseDescription"
                                 placeholder="Description de l'entreprise"
-                                className="w-full p-2 bg-gray-200 rounded h-24"
+                                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 transition h-24 resize-none"
                                 value={form.entrepriseDescription}
                                 onChange={handleChange}
                             />
                         </div>
                     </div>
 
-                    <div className="flex flex-col items-center gap-4">
+                    <div className="flex flex-col items-center gap-4 pt-2">
                         <button
                             type="submit"
                             disabled={loading}
-                            className="bg-orange-500 text-white px-8 py-3 rounded-full font-bold hover:bg-orange-600 transition disabled:opacity-50"
+                            className="bg-orange-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-orange-600 transition-colors disabled:opacity-50"
                         >
                             {loading ? 'Inscription en cours...' : "INSCRIRE MON ENTREPRISE"}
                         </button>
 
-                        <Link to="/" className="text-purple-600 hover:underline">
+                        <Link to="/" className="text-purple-600 hover:text-purple-700 transition-colors">
                             Retour a la connexion
                         </Link>
                     </div>
