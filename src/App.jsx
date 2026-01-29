@@ -18,6 +18,8 @@ import AdminOffres from "./pages/admin/AdminOffres.jsx";
 
 import MesOffres from "./pages/entreprise/MesOffres.jsx";
 import CreerOffre from "./pages/entreprise/CreerOffre.jsx";
+import ModifierOffre from "./pages/entreprise/ModifierOffre.jsx";
+import Offres from "./pages/Offres.jsx";
 
 const AppRoutes = () => {
     const { isAuthenticated, loading } = useAuth();
@@ -65,6 +67,14 @@ const AppRoutes = () => {
                         </ProtectedRoute>
                     }
                 />
+                <Route
+                    path="/offres"
+                    element={
+                        <ProtectedRoute>
+                            <Offres />
+                        </ProtectedRoute>
+                    }
+                />
 
                 {/* Routes entreprise - gestion des offres */}
                 <Route
@@ -80,6 +90,14 @@ const AppRoutes = () => {
                     element={
                         <ProtectedRoute>
                             <CreerOffre />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/modifier-offre/:id"
+                    element={
+                        <ProtectedRoute>
+                            <ModifierOffre />
                         </ProtectedRoute>
                     }
                 />
